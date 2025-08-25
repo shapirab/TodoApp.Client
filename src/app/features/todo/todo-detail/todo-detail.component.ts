@@ -2,10 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TodoToReturnDto } from '../../../core/models/todo/todoToReturnDto';
 import { ActivatedRoute } from '@angular/router';
 import { TodoService } from '../../../core/services/todo.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-todo-detail',
-  imports: [],
+  imports: [
+    DatePipe
+  ],
   templateUrl: './todo-detail.component.html',
   styleUrl: './todo-detail.component.css'
 })
@@ -30,6 +33,7 @@ export class TodoDetailComponent implements OnInit{
     this.todoService.getTodoById(+id).subscribe({
       next: todo => {
         this.todo = todo;
+        console.log(todo)
       },
       error: err => console.log(err)
     });

@@ -1,24 +1,26 @@
-@if(todo){
-  <div class="todo-container">
-    <div class="desc-container">
-      <h2>This is something to be done</h2>
-      <p>I am giving here a description of that something that must be done within some time</p>
-    </div>
-    <div class="dates-container">
-      <p>Created at: August 15, 2025</p>
-      <p>Completed at: August 22, 2025</p>
-    </div>
-    <div class="status"></div>
+<div class="container">
+  <div class="header">
+    <h1 class="heading">Todo's</h1>
   </div>
-  <!-- <div class="todo-container">
+  @if(todo){
+  <div class="todo-container todo-container__body">
+    <div class="status-container">
+      <input type="checkbox">
+    </div>
     <div class="desc-container">
-      <h2>{{todo.heading}}</h2>
-      <p>{{todo.description}}</p>
+      <div class="text">
+        <h2 class="text__body">{{todo.heading}}</h2>
+        <p class="text__body">{{todo.description}}</p>
+      </div>
+      <div class="dates">
+        <p class="dates__body">Created at: {{todo.createdAt | date }}</p>
+        @if(todo.completedAt){
+        <p class="dates__body">Completed at: {{todo.completedAt | date }}</p>
+        }
+      </div>
     </div>
-    <div class="dates-container">
-      <p>Created at: {{todo.createdAt}}</p>
-      <p>Completed at: {{todo.completedAt}}</p>
-    </div>
-    <div class="status"></div>
-  </div> -->
-}
+
+  </div>
+
+  }
+</div>
