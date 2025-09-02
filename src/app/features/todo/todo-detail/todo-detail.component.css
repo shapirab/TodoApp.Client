@@ -19,6 +19,10 @@
   width: 70%;
 }
 
+.todo__empty{
+  height: 5rem;
+}
+
 .todo-container__body{
   background-color: #fff;
 }
@@ -33,4 +37,63 @@
 
 .dates__body{
   font-size: 1.5rem;
+}
+
+/* .status-container input[type="checkbox"] {
+  appearance: none;         Remove default checkbox styling
+  width: 24px;              Control diameter
+  height: 24px;
+  border-radius: 50%;        Make it a circle
+  border: 1px solid #8c8c8c;   Customize border
+  background-color: #fff;   Background color
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.status-container input[type="checkbox"]:checked {
+  background-color: #4CAF50; Color when checked
+}
+
+.status-container input[type="checkbox"]:checked::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: auto;
+  border-radius: 50%;
+  background-color: white;
+} */
+
+.circle-checkbox {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.circle-checkbox input[type="checkbox"] {
+  appearance: none;
+  grid-area: 1 / 1;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid #8d8d8d;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.circle-checkbox i {
+  grid-area: 1 / 1;
+  color: #000;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  line-height: 1;
+}
+
+.circle-checkbox input[type="checkbox"]:checked + i {
+  opacity: 1;
 }

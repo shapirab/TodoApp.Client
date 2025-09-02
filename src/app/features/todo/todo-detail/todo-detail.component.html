@@ -5,7 +5,10 @@
   @if(todo){
   <div class="todo-container todo-container__body">
     <div class="status-container">
-      <input type="checkbox">
+      <label class="circle-checkbox">
+        <input type="checkbox">
+        <i class="fa-solid fa-check"></i>
+      </label>
     </div>
     <div class="desc-container">
       <div class="text">
@@ -19,8 +22,9 @@
         }
       </div>
     </div>
-
   </div>
-
+  }
+  @else {
+    <div class="todo-container todo-container__body todo__empty"></div>
   }
 </div>
