@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
+@import url('./app/core/styles/base.css');
 
-* {
+/* * {
   box-sizing: border-box;
 }
 
@@ -9,4 +9,4 @@ body, html{
   padding: 0;
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 62.5%;
-}
+} */
