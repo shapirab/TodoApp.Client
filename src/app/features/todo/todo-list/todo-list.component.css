@@ -1,0 +1,28 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading{
+  font-weight: 100;
+  font-size: 6rem;
+  color: #6f6f6f;
+}
+
+.todo-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 4rem;
+  width: 70%;
+}
+
+.todo-container__body{
+  background-color: #fff;
+}
+
+.todo__empty{
+  height: 5rem;
+}
