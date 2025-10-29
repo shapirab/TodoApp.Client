@@ -74,4 +74,16 @@ export class TodoService {
   deleteTodo(id: number): Observable<boolean>{
     return this.http.delete<boolean>(`${this.baseUrl}/todo/${id}`);
   }
+
+  updateTodoCompletedStatus(isCompleted: boolean, todo: TodoToReturnDto){
+    let todoToUpdate: TodoToAddDto = {
+      UserId: todo.userId,
+      Heading: todo.heading,
+      Description: todo.description,
+      CreatedAt: todo.createdAt,
+      IsCompleted: isCompleted
+    };
+    console.log('todoService::updateTodoCompletedStatus(). todoToUpdate: ', todoToUpdate)
+    return this.http.put<TodoToReturnDto>(`${this.baseUrl}/todo/${todo.id}`, todoToUpdate, {withCredentials: true});
+  }
 }

@@ -2,23 +2,24 @@
   <div class="header">
     <h1 class="heading">Todo's</h1>
   </div>
-  @if(todo){
+  @let t = todo();
+  @if(t){
   <div class="todo-container todo-container__body">
     <div class="status-container">
       <label class="circle-checkbox">
-        <input type="checkbox">
+        <input #checkbox type="checkbox" (click)="updateTodoStatus(checkbox.checked)" [checked]="t.isCompleted">
         <i class="fa-solid fa-check"></i>
       </label>
     </div>
     <div class="desc-container">
       <div class="text">
-        <h2 class="text__heading">{{todo.heading}}</h2>
-        <p class="text__body">{{todo.description}}</p>
+        <h2 class="text__heading">{{t.heading}}</h2>
+        <p class="text__body">{{t.description}}</p>
       </div>
       <div class="dates">
-        <p class="dates__body">Created at: {{todo.createdAt | date }}</p>
-        @if(todo.completedAt){
-        <p class="dates__body">Completed at: {{todo.completedAt | date }}</p>
+        <p class="dates__body">Created at: {{t.createdAt | date }}</p>
+        @if(t.completedAt){
+        <p class="dates__body">Completed at: {{t.completedAt | date }}</p>
         }
       </div>
     </div>
