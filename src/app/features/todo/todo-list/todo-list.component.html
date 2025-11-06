@@ -2,4 +2,14 @@
   <div class="header">
     <h1 class="heading">Todo's</h1>
   </div>
-  <div class="todo-container todo-container__body todo__empty"></div>
+  @if(todos.length > 0){
+      @for (todo of todos; track todo.id) {
+        <div class="todo-container todo-container__body">
+          <app-todo-detail [todoInput]="todo"></app-todo-detail>
+          <div class="line"></div>
+        </div>
+      }
+  }
+  @else {
+    <div class="todo-container todo-container__body todo__empty"></div>
+  }

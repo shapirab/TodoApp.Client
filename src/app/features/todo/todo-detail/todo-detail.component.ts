@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { TodoToReturnDto } from '../../../core/models/todo/todoToReturnDto';
 import { ActivatedRoute } from '@angular/router';
 import { TodoService } from '../../../core/services/todo.service';
@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
 })
 export class TodoDetailComponent implements OnInit{
   //todo?: TodoToReturnDto;
+  readonly todoInput = input<TodoToReturnDto | null>();
   todo = signal<TodoToReturnDto | null>(null);
 
   private activatedRoute = inject(ActivatedRoute);
@@ -28,6 +29,9 @@ export class TodoDetailComponent implements OnInit{
   getTodo(){
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     if(!id){
+      if(this.todoInput()){
+        this.todo.set(this.todoInput() ?? null);
+      }
       return;
     }
 
