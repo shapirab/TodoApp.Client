@@ -68,6 +68,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "ssl": true,
+            "sslCert": "src/ssl/localhost.pem",
+            "sslKey": "src/ssl/localhost-key.pem"
+          },
           "configurations": {
             "production": {
               "buildTarget": "TodoApp.Client:build:production"

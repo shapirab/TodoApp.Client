@@ -1,1 +1,7 @@
-<p>home works!</p>
+<h1>Welcome To Todo App</h1>
+@if(!accountService.currentUser()){
+  <app-login></app-login>
+}
+@else {
+  <app-todo-list></app-todo-list>
+}

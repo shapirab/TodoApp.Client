@@ -15,7 +15,7 @@ export class AccountService {
   private http = inject(HttpClient);
 
   login(values: any) {
-    return this.http.post<Login>(`${this.baseUrl}/accounts/login`, values, {
+    return this.http.post<Login>(`${this.baseUrl}/account/login`, values, {
         withCredentials: true,
         observe: 'response',
       })
@@ -25,20 +25,20 @@ export class AccountService {
   }
 
   register(values: any) {
-    return this.http.post(`${this.baseUrl}/accounts/register`, values, {withCredentials: true});
+    return this.http.post(`${this.baseUrl}/account/register`, values, {withCredentials: true});
   }
 
   getUserInfo() {
-    return this.http.get<UserToReturn>(`${this.baseUrl}/accounts/user-info`, {
+    return this.http.get<UserToReturn>(`${this.baseUrl}/account/user-info`, {
         withCredentials: true,
       })
       .pipe(
         tap((user) => {
           if (user) {
-            //this.setUserHintCookie(user); // keep cookie in sync
+            this.setUserHintCookie(user.email); // keep cookie in sync
             this.currentUser.set(user);
           } else {
-            //this.setUserHintCookie(null);
+            this.setUserHintCookie(null);
             this.currentUser.set(null);
           }
         })
