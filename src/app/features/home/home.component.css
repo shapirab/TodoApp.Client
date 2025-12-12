@@ -1,0 +1,15 @@
+.container{
+  height: 100vh;
+}
+
+.heading{
+  margin: 0;
+  padding: 2rem 3rem;
+}
+
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85%;
+}

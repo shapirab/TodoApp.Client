@@ -1,7 +1,13 @@
-<h1>Welcome To Todo App</h1>
-@if(!accountService.currentUser()){
-  <app-login></app-login>
-}
-@else {
-  <app-todo-list></app-todo-list>
-}
+<div class="container">
+  <div class="heading">
+    <h1>Welcome To Todo App</h1>
+  </div>
+  @if(!accountService.currentUser()){
+    <div class="login">
+      <app-login></app-login>
+    </div>
+  }
+  @else {
+    <app-todo-list></app-todo-list>
+  }
+</div>

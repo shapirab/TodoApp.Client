@@ -1,9 +1,10 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { UserToReturn } from '../models/user/userToReturn';
 import { HttpClient } from '@angular/common/http';
 import { Login } from '../models/user/login';
-import { switchMap, tap } from 'rxjs';
+import { catchError, of, switchMap, tap } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AccountService {
   currentUser = signal<UserToReturn | null | undefined>(undefined);
 
   private http = inject(HttpClient);
+  private platformId = inject(PLATFORM_ID);
 
   login(values: any) {
     return this.http.post<Login>(`${this.baseUrl}/account/login`, values, {
@@ -20,7 +22,10 @@ export class AccountService {
         observe: 'response',
       })
       .pipe(
-        switchMap(() => this.getUserInfo())
+        switchMap(() => this.getUserInfo()),
+        tap(() => {
+        this.getUserInfo().subscribe();
+      })
       );
   }
 
@@ -37,15 +42,29 @@ export class AccountService {
           if (user) {
             this.setUserHintCookie(user.email); // keep cookie in sync
             this.currentUser.set(user);
-          } else {
-            this.setUserHintCookie(null);
-            this.currentUser.set(null);
           }
+          // else {
+          //   this.setUserHintCookie(null);
+          //   this.currentUser.set(null);
+          // }
+        }),
+        catchError((error) => {
+          console.error('Error fetching user info:', error);
+          this.currentUser.set(null);
+          return of(null);
         })
       );
   }
 
+  logout(){
+    return this.http.post(`${this.baseUrl}/account/logout`, {}, {withCredentials:true});
+  }
+
    private setUserHintCookie(email: string | null) {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     const name = 'bb_user';
     document.cookie = email
       ? `${name}=${encodeURIComponent(
