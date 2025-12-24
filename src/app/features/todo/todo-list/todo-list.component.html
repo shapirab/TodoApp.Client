@@ -2,7 +2,7 @@
   <div class="header">
     <h1 class="heading">Todo's</h1>
   </div>
-  <button (click)="logout()">Logout</button>
+  <button class="btn btn--primary" (click)="logout()">Logout</button>
   @if(todos.length > 0){
     <div class="todo-container todo-container__body todo__empty">
       <form ngForm #todoForm (ngSubmit)="onSubmit()">

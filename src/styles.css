@@ -1,4 +1,5 @@
 @import url('./app/core/styles/base.css');
+@import url('./app/core/styles/sharedStyles.css');
 
 /* * {
   box-sizing: border-box;
