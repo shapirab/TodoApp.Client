@@ -5,6 +5,8 @@ import TodoParams from '../../../core/models/todo/todoParams';
 import { TodoDetailComponent } from "../todo-detail/todo-detail.component";
 import { FormsModule } from '@angular/forms';
 import { TodoToAddDto } from '../../../core/models/todo/todoToAddDto';
+import { AccountService } from '../../../core/services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
@@ -17,6 +19,8 @@ import { TodoToAddDto } from '../../../core/models/todo/todoToAddDto';
 })
 export class TodoListComponent implements OnInit{
   private todoService = inject(TodoService);
+  private accountService = inject(AccountService);
+  private router = inject(Router);
 
   todos: TodoToReturnDto[] = [];
   newTodo?: string = '';
@@ -31,5 +35,10 @@ export class TodoListComponent implements OnInit{
 
   onSubmit(){
     console.log('todoList::OnSubmit() called.', this.newTodo)
+  }
+
+  logout(){
+    this.accountService.logout().subscribe();
+    this.router.navigateByUrl('/');
   }
 }
