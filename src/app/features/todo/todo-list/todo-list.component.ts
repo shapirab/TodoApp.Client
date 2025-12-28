@@ -18,8 +18,8 @@ import { Router } from '@angular/router';
   styleUrl: './todo-list.component.css'
 })
 export class TodoListComponent implements OnInit{
+  accountService = inject(AccountService);
   private todoService = inject(TodoService);
-  private accountService = inject(AccountService);
   private router = inject(Router);
 
   todos: TodoToReturnDto[] = [];
@@ -38,7 +38,11 @@ export class TodoListComponent implements OnInit{
   }
 
   logout(){
-    this.accountService.logout().subscribe();
-    this.router.navigateByUrl('/');
+    this.accountService.logout().subscribe({
+      next: () => {
+        this.router.navigateByUrl('/login')
+      },
+      error: err => console.log(err)
+    });
   }
 }
