@@ -1,9 +1,9 @@
-.container{
+/* .container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .heading{
   font-weight: 100;
@@ -27,6 +27,16 @@
 
 .todo__empty{
   height: 5rem;
+}
+
+.todo__input{
+  border: none;
+  font-size: 2rem;
+  margin-top: 3rem;
+}
+
+.todo__input:focus{
+  outline: none;
 }
 
 .line{
