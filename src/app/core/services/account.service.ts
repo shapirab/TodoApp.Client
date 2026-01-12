@@ -57,7 +57,7 @@ export class AccountService {
   }
 
   logout(){
-    console.log('accountService:logout() called')
+    
     return this.http.post(`${this.baseUrl}/account/logout`, {}, {withCredentials:true});
   }
 

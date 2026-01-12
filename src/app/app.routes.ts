@@ -8,7 +8,7 @@ import { todoGuard } from './core/guards/todo.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: HomeComponent },
   { path: 'todo', component: TodoListComponent, canActivate:[todoGuard] },
   { path: 'todo/:id', component: TodoDetailComponent },
   { path: '**', redirectTo: '' }
