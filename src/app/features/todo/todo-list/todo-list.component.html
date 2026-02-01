@@ -7,8 +7,9 @@
   @if(todos.length > 0){
     <div class="todo-container todo-container__body">
       <form ngForm #todoForm (ngSubmit)="onSubmit()">
-        <input class="todo__input" name="title" [(ngModel)]="newTodo" required (keydown.enter)="submitBtn.click()"
-          placeholder="Enter todo title" />
+        <input class="todo__input" name="title" [(ngModel)]="newTodoText" required placeholder="Enter todo title" />
+        <!-- <input class="todo__input" name="title" [(ngModel)]="newTodoText" required (keydown.enter)="submitBtn.click()"
+          placeholder="Enter todo title" /> -->
         <button #submitBtn type="submit" style="display: none;"></button>
       </form>
       <div class="line"></div>

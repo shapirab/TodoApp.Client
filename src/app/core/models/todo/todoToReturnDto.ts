@@ -1,6 +1,6 @@
 export interface TodoToReturnDto{
   id: number,
-  userId: string,
+  userEmail: string,
   heading: string,
   description?: string,
   isCompleted?: boolean,

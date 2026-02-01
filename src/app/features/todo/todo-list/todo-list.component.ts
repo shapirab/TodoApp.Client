@@ -23,9 +23,13 @@ export class TodoListComponent implements OnInit{
   private router = inject(Router);
 
   todos: TodoToReturnDto[] = [];
-  newTodo?: string = '';
+  newTodoText?: string = '';
 
   ngOnInit(): void {
+    this.getAllTodos();
+  }
+
+  getAllTodos(){
     const params: TodoParams = new TodoParams();
     this.todoService.getAllTodosAsync(params).subscribe({
       next: result => this.todos = result.todos,
@@ -34,7 +38,7 @@ export class TodoListComponent implements OnInit{
   }
 
   onSubmit(){
-    console.log('todoList::OnSubmit() called.', this.newTodo)
+    this.addTodo();
   }
 
   logout(){
@@ -45,5 +49,25 @@ export class TodoListComponent implements OnInit{
       },
       error: err => console.log(err)
     });
+  }
+
+  addTodo(){
+    console.log('todoListComponent::addTodo() called');
+    if(this.accountService.currentUser()){
+      let todoToAdd:TodoToAddDto = {
+        userEmail: this.accountService.currentUser()?.email,
+        heading: this.newTodoText
+      }
+      console.log('todoListComponent::addTodo(). todoToAdd: ', todoToAdd);
+
+      this.todoService.addTodo(todoToAdd).subscribe({
+        next: todo => {
+          console.log('todo added. ', todo);
+          this.newTodoText = '';
+          this.getAllTodos();
+        },
+        error: err => console.log(err)
+      });
+    }
   }
 }

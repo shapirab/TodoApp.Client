@@ -24,8 +24,8 @@ export class TodoService {
 
   getAllTodosAsync(todoParams: TodoParams): Observable<{todos: TodoToReturnDto[], paginationMetadata: any}>{
     let params = new HttpParams();
-    if(todoParams.userId){
-      params = params.append('userId', todoParams.userId);
+    if(todoParams.userEmail){
+      params = params.append('userEmail', todoParams.userEmail);
     }
 
     if(todoParams.isCompleted){
@@ -68,7 +68,8 @@ export class TodoService {
   }
 
   addTodo(todo: TodoToAddDto): Observable<TodoToReturnDto>{
-    return this.http.post<TodoToReturnDto>(`${this.baseUrl}/todo`, {todo}, {withCredentials: true});
+    console.log('todoService::addTodo(). todoToAdd: ', todo);
+    return this.http.post<TodoToReturnDto>(`${this.baseUrl}/todo`, todo, {withCredentials: true});
   }
 
   deleteTodo(id: number): Observable<boolean>{
@@ -77,8 +78,8 @@ export class TodoService {
 
   updateTodoCompletedStatus(isCompleted: boolean, todo: TodoToReturnDto){
     let todoToUpdate: TodoToAddDto = {
-      UserId: todo.userId,
-      Heading: todo.heading,
+      userEmail: todo.userEmail,
+      heading: todo.heading,
       Description: todo.description,
       CreatedAt: todo.createdAt,
       IsCompleted: isCompleted

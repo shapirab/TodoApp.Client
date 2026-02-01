@@ -1,6 +1,6 @@
 export interface TodoToAddDto{
-  UserId: string,
-  Heading: string,
+  userEmail?: string,
+  heading?: string,
   Description?: string,
   IsCompleted?: boolean,
   CreatedAt?: Date,

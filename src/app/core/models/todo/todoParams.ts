@@ -3,7 +3,7 @@ export default class TodoParams {
   pageSize: number = 10;
   sort: string = 'name';
   searchQuery?: string;
-  userId?: string;
+  userEmail?: string;
   isCompleted?: boolean;
   createdAt?: Date;
   completedAt?: Date;
