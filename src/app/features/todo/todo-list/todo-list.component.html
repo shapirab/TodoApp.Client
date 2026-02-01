@@ -4,16 +4,16 @@
     <h1 class="heading">Todo's</h1>
   </div>
   <button class="btn btn--primary" (click)="logout()">Logout</button>
+  <div class="todo-container todo-container__body">
+    <form ngForm #todoForm (ngSubmit)="onSubmit()">
+      <input class="todo__input" name="title" [(ngModel)]="newTodoText" required placeholder="Enter todo title" />
+      <!-- <input class="todo__input" name="title" [(ngModel)]="newTodoText" required (keydown.enter)="submitBtn.click()"
+        placeholder="Enter todo title" /> -->
+      <button #submitBtn type="submit" style="display: none;"></button>
+    </form>
+    <div class="line"></div>
+  </div>
   @if(todos.length > 0){
-    <div class="todo-container todo-container__body">
-      <form ngForm #todoForm (ngSubmit)="onSubmit()">
-        <input class="todo__input" name="title" [(ngModel)]="newTodoText" required placeholder="Enter todo title" />
-        <!-- <input class="todo__input" name="title" [(ngModel)]="newTodoText" required (keydown.enter)="submitBtn.click()"
-          placeholder="Enter todo title" /> -->
-        <button #submitBtn type="submit" style="display: none;"></button>
-      </form>
-      <div class="line"></div>
-    </div>
     @for (todo of todos; track todo.id) {
     <div class="todo-container todo-container__body">
       <app-todo-detail [todoInput]="todo"></app-todo-detail>
@@ -21,9 +21,14 @@
     </div>
     }
   }
-  @else {
-  <div class="todo-container todo-container__body todo__empty"></div>
-  }
+  <!-- @else {
+  <div class="todo-container todo-container__body todo__empty">
+    <form ngForm #todoForm (ngSubmit)="onSubmit()">
+        <input class="todo__input" name="title" [(ngModel)]="newTodoText" required placeholder="Enter todo title" />
+        <button #submitBtn type="submit" style="display: none;"></button>
+      </form>
+  </div>
+  } -->
 </div>
 }
 
