@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, OnInit, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Pagination } from '../models/shared/pagination';
@@ -10,8 +10,10 @@ import { TodoToAddDto } from '../models/todo/todoToAddDto';
 @Injectable({
   providedIn: 'root'
 })
-export class TodoService {
+export class TodoService{
   baseUrl: string = environment.apiUrl;
+
+  todos = signal<TodoToReturnDto[] | null>(null);
 
   private paginationMetadataSubject = new BehaviorSubject<Pagination>({
     totalItemCount: 0,
@@ -19,6 +21,8 @@ export class TodoService {
     pageSize: 0
   });
   paginationMetadata$ = this.paginationMetadataSubject.asObservable();
+
+  private todoParams = new TodoParams();
 
   private http = inject(HttpClient);
 
@@ -55,6 +59,8 @@ export class TodoService {
       map(response => {
         let paginationHeader = response.headers.get('X-Pagination');
         this.paginationMetadataSubject.next(JSON.parse(paginationHeader!));
+        let todos = response.body || [];
+        this.todos.set(todos);
         return {
           todos: response.body || [],
           paginationMetadata: JSON.parse(paginationHeader!)
