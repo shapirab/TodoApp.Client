@@ -26,11 +26,12 @@ export class TodoListComponent implements OnInit{
   newTodoText?: string = '';
 
   ngOnInit(): void {
-    this.getAllTodos();
+    this.getUserTodos();
   }
 
-  getAllTodos(){
+  getUserTodos(){
     const params: TodoParams = new TodoParams();
+    params.userEmail = this.accountService.currentUser()?.email;
     this.todoService.getAllTodosAsync(params).subscribe({
       next: result => this.todos = result.todos,
       error: err => console.error(err)
@@ -52,7 +53,6 @@ export class TodoListComponent implements OnInit{
   }
 
   addTodo(){
-    console.log('todoListComponent::addTodo() called');
     if(this.accountService.currentUser()){
       let todoToAdd:TodoToAddDto = {
         userEmail: this.accountService.currentUser()?.email,
@@ -64,7 +64,7 @@ export class TodoListComponent implements OnInit{
         next: todo => {
           console.log('todo added. ', todo);
           this.newTodoText = '';
-          this.getAllTodos();
+          this.getUserTodos();
         },
         error: err => console.log(err)
       });

@@ -74,7 +74,6 @@ export class TodoService{
   }
 
   addTodo(todo: TodoToAddDto): Observable<TodoToReturnDto>{
-    console.log('todoService::addTodo(). todoToAdd: ', todo);
     return this.http.post<TodoToReturnDto>(`${this.baseUrl}/todo`, todo, {withCredentials: true});
   }
 
