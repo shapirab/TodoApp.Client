@@ -4,7 +4,8 @@
   </div>
   @if(!accountService.currentUser()){
     <div class="login">
-      <app-login></app-login>
+       <button routerLink="/login" class="btn btn--primary">Login</button>
+       <button routerLink="/register" class="btn btn--primary">Register</button>
     </div>
   }
 </div>

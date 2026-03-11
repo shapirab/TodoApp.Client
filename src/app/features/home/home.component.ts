@@ -2,11 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { LoginComponent } from "../login/login.component";
 import { AccountService } from '../../core/services/account.service';
 import { TodoListComponent } from "../todo/todo-list/todo-list.component";
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [LoginComponent, TodoListComponent],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
