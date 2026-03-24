@@ -1,1 +1,26 @@
-<p>register works!</p>
+<div class="container">
+  <form [formGroup]="registerForm" (submit)="onRegister()">
+      <div class="account-form__header">
+        <h1 class="account-form__heading">Register</h1>
+      </div>
+      <div class="account-form__body">
+        <div class="account-form__input">
+          <label class="account__label" for="firstName">first Name</label>
+          <input class="account__input" type="firstName" formControlName="firstName" placeholder="Please enter your first name">
+        </div>
+        <div class="account-form__input">
+          <label class="account__label" for="lastName">last Name</label>
+          <input class="account__input" type="lastName" formControlName="lastName" placeholder="Please enter your last name">
+        </div>
+        <div class="account-form__input">
+          <label class="account__label" for="email">Email Address</label>
+          <input class="account__input" type="email" formControlName="email" placeholder="Please enter your email address">
+        </div>
+        <div class="account-form__input">
+          <label class="account__label" for="password">Password</label>
+          <input class="account__input" type="password" formControlName="password" placeholder="Please enter your password">
+        </div>
+      </div>
+      <button type="submit" class="btn btn--primary">Register</button>
+    </form>
+</div>

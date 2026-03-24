@@ -39,3 +39,8 @@
   font-size: 1.5rem;
   margin-bottom: 5px;
 }
+
+.account-form__input{
+  display: flex;
+  flex-direction: column;
+}

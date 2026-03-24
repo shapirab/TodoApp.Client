@@ -4,7 +4,4 @@
   justify-content: center;
 }
 
-.account-form__input{
-  display: flex;
-  flex-direction: column;
-}
+
