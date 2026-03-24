@@ -46,7 +46,7 @@ export class TodoListComponent implements OnInit{
     this.accountService.logout().subscribe({
       next: () => {
         this.accountService.currentUser.set(null);
-        this.router.navigateByUrl('/login')
+        this.router.navigateByUrl('/')
       },
       error: err => console.log(err)
     });
